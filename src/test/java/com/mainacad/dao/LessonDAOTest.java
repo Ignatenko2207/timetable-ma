@@ -83,17 +83,17 @@ class LessonDAOTest {
         specializations.stream().forEach(it -> specializationDAO.delete(it));
     }
 
-//    @Test
-//    void testFindLessonsByStudent(){
-//        LocalDateTime from = LocalDateTime.of(2019, 10, 3, 0, 0, 0);
-//        LocalDateTime to = LocalDateTime.of(2019, 10, 3, 23, 59, 59);
-//
-//        List<Lesson> testObject = lessonDAO.findByStudentAndStartTimeBetweenFromAndTo(students.get(0), from, to);
-//
-//        assertNotNull(testObject);
-//        assertEquals(1, testObject.size());
-//        assertEquals(3, testObject.get(0).getCabinet());
-//    }
+    @Test
+    void testFindLessonsByStudent(){
+        LocalDateTime from = LocalDateTime.of(2019, 10, 24, 0, 0, 0);
+        LocalDateTime to = LocalDateTime.of(2019, 10, 24, 23, 59, 59);
+
+        List<Lesson> testObject = lessonDAO.findNotLectureByStudentAndStartTimeAfterAndStartTimeBefore(students.get(0).getEmail(), from, to);
+
+        assertNotNull(testObject);
+        assertEquals(1, testObject.size());
+        assertEquals("24", testObject.get(0).getCabinet());
+    }
 
     @Test
     void testFindLessonsByGroup(){
